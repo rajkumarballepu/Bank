@@ -18,11 +18,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import java.awt.Color;
 
 public class LoginAdmin {
 
 	private JFrame frame;
 	private JPasswordField passwordField;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -94,6 +97,10 @@ public class LoginAdmin {
 		lblType.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
 		JButton loginBtn = new JButton("Login");
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		loginBtn.setFont(new Font("Verdana", Font.BOLD, 12));
 		
 		JButton btnSignup = new JButton("SignUp");
@@ -104,38 +111,42 @@ public class LoginAdmin {
 		btnSignup.setFont(new Font("Verdana", Font.BOLD, 12));
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setForeground(new Color(0, 0, 0));
+		textArea.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
 		passwordField = new JPasswordField();
 		
-		JRadioButton adminRadioButton = new JRadioButton("Admin");
-		
-		JRadioButton rdbtnCustomer = new JRadioButton("Customer");
+		JPanel panel_2 = new JPanel();
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		gl_panel_1.setHorizontalGroup(
 			gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addGap(31)
 							.addComponent(loginBtn, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(Alignment.LEADING, gl_panel_1.createSequentialGroup()
+						.addGroup(gl_panel_1.createSequentialGroup()
 							.addContainerGap()
 							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 								.addComponent(usernameLabel, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblType, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))))
-					.addGap(16)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(17, Short.MAX_VALUE))
+							.addGroup(gl_panel_1.createSequentialGroup()
+								.addGap(18)
+								.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+									.addComponent(passwordField)
+									.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
+								.addContainerGap()))
 						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnSignup, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
-								.addComponent(passwordField, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-								.addComponent(textArea, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE))
-							.addGap(20))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addComponent(adminRadioButton)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnCustomer)
+							.addGap(18)
+							.addComponent(btnSignup, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
 							.addContainerGap())))
 		);
 		gl_panel_1.setVerticalGroup(
@@ -144,23 +155,36 @@ public class LoginAdmin {
 					.addContainerGap()
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(usernameLabel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textArea, GroupLayout.PREFERRED_SIZE, 22, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblType, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-							.addComponent(adminRadioButton)
-							.addComponent(rdbtnCustomer)))
-					.addGap(56)
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnSignup, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(58, Short.MAX_VALUE))
+						.addComponent(passwordField, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING, false)
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(lblType, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+							.addGap(17))
+						.addGroup(gl_panel_1.createSequentialGroup()
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+							.addGap(7)))
+					.addGap(39)
+					.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
+						.addComponent(loginBtn, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnSignup, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(52, Short.MAX_VALUE))
 		);
+		panel_2.setLayout(null);
+		
+		JRadioButton adminRadioButton = new JRadioButton("Admin");
+		adminRadioButton.setBounds(0, 5, 68, 21);
+		panel_2.add(adminRadioButton);
+		buttonGroup.add(adminRadioButton);
+		
+		JRadioButton rdbtnCustomer = new JRadioButton("Customer");
+		rdbtnCustomer.setBounds(64, 5, 81, 21);
+		panel_2.add(rdbtnCustomer);
+		buttonGroup.add(rdbtnCustomer);
 		panel_1.setLayout(gl_panel_1);
 		
 		Button loginButton = new Button("Login");
