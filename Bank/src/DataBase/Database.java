@@ -10,6 +10,7 @@ public class Database {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/rajkumar", "root", "rajkumar@3772");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -22,8 +23,6 @@ public class Database {
 		
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		getConnection();
 	}
-
 }

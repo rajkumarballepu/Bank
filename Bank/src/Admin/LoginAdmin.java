@@ -95,10 +95,18 @@ public class LoginAdmin {
 		
 		JLabel lblType = new JLabel("Type");
 		lblType.setFont(new Font("Verdana", Font.PLAIN, 12));
+
+		JTextArea textArea = new JTextArea();
+		textArea.setLineWrap(true);
+		textArea.setForeground(new Color(0, 0, 0));
+		textArea.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
 		JButton loginBtn = new JButton("Login");
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String name = textArea.getText();
+				String password = new String(passwordField.getPassword());
+				AdminDB.validCredentials(name, password);
 			}
 		});
 		loginBtn.setFont(new Font("Verdana", Font.BOLD, 12));
@@ -110,10 +118,6 @@ public class LoginAdmin {
 		});
 		btnSignup.setFont(new Font("Verdana", Font.BOLD, 12));
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setLineWrap(true);
-		textArea.setForeground(new Color(0, 0, 0));
-		textArea.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
 		passwordField = new JPasswordField();
 		
