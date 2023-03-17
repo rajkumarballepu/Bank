@@ -22,7 +22,4 @@ public class Database {
 		return connection;
 		
 	}
-	public static void main(String[] args) {
-		getConnection();
-	}
 }

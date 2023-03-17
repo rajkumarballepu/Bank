@@ -1,6 +1,7 @@
 package Admin;
 
 
+
 import java.awt.EventQueue;
 
 
@@ -12,8 +13,12 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
 import java.awt.Panel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+
+import DataBase.AdminDB;
+
 import java.awt.Button;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -45,12 +50,12 @@ public class LoginAdmin {
 			}
 		});
 	}
-
 	/**
 	 * Create the application.
 	 */
 	public LoginAdmin() {
 		initialize();
+		new AdminDB();
 	}
 
 	/**

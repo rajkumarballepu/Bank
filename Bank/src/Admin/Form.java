@@ -1,8 +1,6 @@
 package Admin;
 
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -10,25 +8,29 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
+
+import DataBase.AdminDB;
 
 public class Form {
 
 	JFrame frame;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textFieldName;
+	private JTextField textFieldUserName;
+	private JTextField textFieldPassword;
+	private JTextField textFieldAdd;
+	private JTextField textFieldMobile;
+	private JTextField textFieldId;
 
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,7 +43,7 @@ public class Form {
 			}
 		});
 	}
-
+	*/
 	/**
 	 * Create the application.
 	 */
@@ -64,8 +66,8 @@ public class Form {
 		JLabel lblName = new JLabel("Name");
 		lblName.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textFieldName = new JTextField();
+		textFieldName.setColumns(10);
 		
 		JLabel lblDOB = new JLabel("DOB");
 		lblDOB.setFont(new Font("Verdana", Font.PLAIN, 12));
@@ -76,16 +78,22 @@ public class Form {
 		JLabel lblPassword = new JLabel("PASSWORD");
 		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
+		textFieldUserName = new JTextField();
+		textFieldUserName.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
+		textFieldPassword = new JTextField();
+		textFieldPassword.setColumns(10);
+		
+		JDateChooser dateChooser = new JDateChooser();
 		
 		JButton btnNewButton = new JButton("SUBMIT");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String name = textFieldName.getText().toUpperCase(), dob = DateFormat.getDateInstance().format(dateChooser.getDate());
+				String username = textFieldUserName.getText(),password = textFieldPassword.getText(),add = textFieldAdd.getText();
+				long mobile = Long.parseLong(textFieldMobile.getText()), id = Long.parseLong(textFieldId.getText());
+				AdminDB.insertForm(name,dob,username,password,add,mobile,id);
+				JOptionPane.showMessageDialog(frame, "Account created successfully...");
 			}
 		});
 		btnNewButton.setFont(new Font("Verdana", Font.BOLD, 12));
@@ -108,16 +116,15 @@ public class Form {
 		JLabel lblID = new JLabel("ID NO (Adar)");
 		lblID.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
+		textFieldAdd = new JTextField();
+		textFieldAdd.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
+		textFieldMobile = new JTextField();
+		textFieldMobile.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
+		textFieldId = new JTextField();
+		textFieldId.setColumns(10);
 		
-		JDateChooser dateChooser = new JDateChooser();
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -136,27 +143,27 @@ public class Form {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblName, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldName, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldUserName, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldPassword, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblAddress, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldAdd, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblMobile, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldMobile, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(lblID, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))))
+									.addComponent(textFieldId, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(116)
 							.addComponent(btnNewButton)
@@ -172,7 +179,7 @@ public class Form {
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblName)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(15)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblDOB, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
@@ -180,23 +187,23 @@ public class Form {
 					.addGap(21)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblUsername, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldUserName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblPassword, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblAddress, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldAdd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblMobile, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldMobile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblID, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton)
