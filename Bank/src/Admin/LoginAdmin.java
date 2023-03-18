@@ -18,6 +18,8 @@ import java.awt.Panel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import DataBase.AdminDB;
+import DataBase.UserDB;
+import User.UserLogged;
 
 import java.awt.Button;
 import javax.swing.JButton;
@@ -140,7 +142,7 @@ public class LoginAdmin {
 				if (adminRadioButton.isSelected()) {
 					type = "Admin";
 				} else if (rdbtnCustomer.isSelected()) {
-					type = "Custemer";
+					type = "Customer";
 				}
 				if (username == null || password == null || type  == null) {
 					JOptionPane.showMessageDialog(frame, "Enter all details...");
@@ -149,11 +151,14 @@ public class LoginAdmin {
 					frame.dispose();
 					new LoginAd().frame.setVisible(true);
 					
-				}else {
+				} else if (UserDB.validCredentials(username, password) && type.equals("Customer")) {
+					new UserLogged().frame.setVisible(true);
+					frame.dispose();
+				} else {
 					System.out.println(username);
 					System.out.println(password);
 					System.out.println(type);
-					JOptionPane.showMessageDialog(frame, "Invalid Details...");
+					JOptionPane.showMessageDialog(frame, "Invalid Username or password...");
 					textField.setText("");
 					passwordField.setText("");
 					buttonGroup.clearSelection();
