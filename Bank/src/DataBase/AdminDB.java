@@ -24,7 +24,6 @@ public class AdminDB {
 				}
 			}
 			return false;
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,7 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
+
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -55,8 +59,10 @@ public class Form {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 439);
+		frame.setBounds(((int)screenSize.getWidth()-450)/2, ((int)screenSize.getHeight()-440)/2, 450, 440);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblCreateAccount = new JLabel("Create Account");

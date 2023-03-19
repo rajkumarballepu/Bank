@@ -12,27 +12,34 @@ import javax.swing.JOptionPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
 
-import java.awt.Panel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import DataBase.AdminDB;
 import DataBase.UserDB;
-import User.UserLogged;
+import user.UserLogged;
 
-import java.awt.Button;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 
 public class LoginAdmin {
 
-	JFrame frame;
+	public JFrame frame;
 	private JPasswordField passwordField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField textField;
@@ -57,59 +64,86 @@ public class LoginAdmin {
 	 */
 	public LoginAdmin() {
 		initialize();
-		new AdminDB();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 445, 489);
+		frame.setBounds(((int)screenSize.getWidth()-400)/2, ((int)screenSize.getHeight()-420)/2, 400, 420);
+		frame.setIconImage(new Image() {
+			
+			@Override
+			public int getWidth(ImageObserver observer) {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+			@Override
+			public ImageProducer getSource() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public Object getProperty(String name, ImageObserver observer) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public int getHeight(ImageObserver observer) {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+			@Override
+			public Graphics getGraphics() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		});
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(71, 32, 288, 50);
+		panel.setBackground(new Color(64, 0, 128));
+		panel.setBounds(45, 32, 288, 50);
+		panel.setOpaque(false);
 		frame.getContentPane().add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel loginLabel = new JLabel("LOGIN");
+		loginLabel.setForeground(new Color(255, 0, 0));
 		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		loginLabel.setFont(new Font("Verdana", Font.BOLD, 18));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(loginLabel, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(loginLabel, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		panel.setLayout(gl_panel);
+		panel.add(loginLabel);
 		
-		Panel panel_1 = new Panel();
-		panel_1.setBounds(71, 105, 288, 264);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(45, 105, 288, 264);
+		panel_1.setOpaque(false);
 		frame.getContentPane().add(panel_1);
 		
 		JLabel usernameLabel = new JLabel("Username");
+		usernameLabel.setForeground(new Color(255, 128, 64));
 		usernameLabel.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
 		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setForeground(new Color(255, 128, 64));
 		lblPassword.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
 		JLabel lblType = new JLabel("Type");
+		lblType.setForeground(new Color(255, 128, 0));
 		lblType.setFont(new Font("Verdana", Font.PLAIN, 12));
 		
 		
 		passwordField = new JPasswordField();
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setOpaque(false);
 		
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -118,21 +152,21 @@ public class LoginAdmin {
 		panel_2.setLayout(null);
 		
 		JRadioButton adminRadioButton = new JRadioButton("Admin");
+		adminRadioButton.setForeground(new Color(255, 128, 0));
 		adminRadioButton.setBounds(0, 5, 68, 21);
+		adminRadioButton.setOpaque(false);
 		panel_2.add(adminRadioButton);
 		buttonGroup.add(adminRadioButton);
 		
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
 		
 		JRadioButton rdbtnCustomer = new JRadioButton("Customer");
+		rdbtnCustomer.setForeground(new Color(255, 128, 0));
 		rdbtnCustomer.setBounds(64, 5, 81, 21);
+		rdbtnCustomer.setOpaque(false);
 		panel_2.add(rdbtnCustomer);
 		buttonGroup.add(rdbtnCustomer);
 		panel_1.setLayout(gl_panel_1);
-		
-		Button loginButton = new Button("Login");
-		loginButton.setBounds(111, 293, 113, 32);
-		frame.getContentPane().add(loginButton);
 		
 		JButton loginBtn = new JButton("Login");
 		loginBtn.addActionListener(new ActionListener() {
@@ -152,7 +186,10 @@ public class LoginAdmin {
 					new LoginAd().frame.setVisible(true);
 					
 				} else if (UserDB.validCredentials(username, password) && type.equals("Customer")) {
-					new UserLogged().frame.setVisible(true);
+					new UserLogged(frame).frame.setVisible(true);
+					textField.setText("");
+					passwordField.setText("");
+					buttonGroup.clearSelection();
 					frame.dispose();
 				} else {
 					System.out.println(username);
@@ -227,5 +264,6 @@ public class LoginAdmin {
 						.addComponent(btnSignup, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(55, Short.MAX_VALUE))
 		);
+		
 	}
 }
